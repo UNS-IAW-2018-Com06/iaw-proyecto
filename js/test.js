@@ -18,6 +18,10 @@ function mostrarUniversidades(data){
     })
 } 
 
+function getId(universidad) {
+    return universidad.nombre.replace(/\s/g, '');
+}
+
 function agregarUniversidad(id,universidad){
     var row = $("<tr></tr>").attr("id", id);
     row.append($("<td></td").text(universidad.nombre));
