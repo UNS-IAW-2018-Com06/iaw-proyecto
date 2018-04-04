@@ -10,7 +10,7 @@ $(function() {
 });
 
 function mostrarUniversidades(data){
-    var index
+    var index;
 
     $.each(data, function(index,universidad){
         var id = getId(universidad);
@@ -21,5 +21,6 @@ function mostrarUniversidades(data){
 function agregarUniversidad(id,universidad){
     var row = $("<tr></tr>").attr("id", id);
     row.append($("<td></td").text(universidad.nombre));
+    console.log(universidad.nombre);
     $("#tabla").append(row);
 }
