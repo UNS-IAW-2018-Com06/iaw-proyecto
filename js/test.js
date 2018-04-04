@@ -4,7 +4,7 @@ var universidades;
 $(function() {
     $.get("./data/universidades.json", function(data, status) {
         console.log(data);
-        //universidades = new Map(data.map((universidad) => [getId(universidad), universidad]));
+        universidades = new Map(data.map((universidad) => [getId(universidad), universidad]));
         mostrarUniversidades(data);
     });
 });
