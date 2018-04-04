@@ -1,0 +1,68 @@
+[
+    {
+        "nombre": "Universidad de Buenos Aires",
+        "provincia": "Ciudad Autónoma de Buenos Aires",
+        "ciudad": "Buenos Aires",
+        "dirección": "Viamonte 430",
+        "teléfono": "",
+        "web": "http://www.uba.ar/",
+        "coordenadas": { "lat" : "-34.599871", "lng" : "-58.373067"},
+        "carreras de grado": [
+            {
+                "nombre carrera": "Abogacia",
+                "duración": 5
+            }
+        ],
+        "carreras de posgrado": [
+            {
+                "nombre carrera": "",
+                "duración": ""
+            }
+        ],
+        "comentarios": []
+    },
+    {
+        "nombre": "Universidad Nacional de Córdoba",
+        "provincia": "Córdoba",
+        "ciudad": "Córdoba",
+        "dirección": "Haya de la Torre s/n Pabellón Argentina",
+        "teléfono": "",
+        "web": "http://www.unc.edu.ar",
+        "coordenadas": { "lat" : "-31.433894", "lng" : "-64.185911"},
+        "carreras de grado": [
+            {
+                "nombre carrera": "Abogacia",
+                "duración": 5
+            }
+        ],
+        "carreras de posgrado": [
+            {
+                "nombre carrera": "",
+                "duración": ""
+            }
+        ],
+        "comentarios": []
+    },
+    {
+        "nombre": "Universidad Nacional del Sur",
+        "provincia": "Buenos Aires",
+        "ciudad": "Bahía Blanca",
+        "dirección": "Av. Alem 1253",
+        "teléfono": "",
+        "web": "http://www.uns.edu.ar",
+        "coordenadas": { "lat": "-38.700987", "lng": "-62.270275"},
+        "carreras de grado": [
+            {
+                "nombre carrera": "Abogacia",
+                "duración": 5
+            }
+        ],
+        "carreras de posgrado": [
+            {
+                "nombre carrera": "",
+                "duración": ""
+            }
+        ],
+        "comentarios": []
+    }
+]
