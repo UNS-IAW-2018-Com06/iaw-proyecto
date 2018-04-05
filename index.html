@@ -10,7 +10,8 @@
 	<!-- Bootstrap -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
-	<!-- Estilos IAW -->
+	<!-- Estilos IAW 
+	 <link href="css/estilos-iaw.css" rel="stylesheet">  -->
 
 	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -19,6 +20,8 @@
 	<script src="js/bootstrap.min.js"></script>
 	
 	<script src="js/test.js"></script>
+	<script type="text/javascript" src="js/storage.js"></script>
+	
 	<style>
 		#map {
 			height: 400px;
@@ -46,7 +49,7 @@
 					<span class="icon-bar"></span>
 				</button>
 
-				<a class="navbar-brand" href="#">
+				<a class="navbar-brand" href="https://luchofuentes.github.io/iaw-proyecto/">
 					<img src="images/logo.png" alt="Logo" width="95" height="50">
 				</a>
 			</div>
@@ -130,8 +133,8 @@
 						<span class="caret"></span>
 					</button>
 					<ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu2">
-						<li role="presentation"><a role="menuitem" tabindex="-1" href="#">Estilo 1</a></li>
-						<li role="presentation"><a role="menuitem" tabindex="-1" href="#">Estilo 2</a></li>
+						<li role="presentation" id="estilo1"><a role="menuitem" tabindex="-1" href="#">Estilo 1</a></li>
+						<li role="presentation" id="estilo2"><a role="menuitem" tabindex="-1" href="#">Estilo 2</a></li>
 					</ul>
 				</div>
 			</div><!-- /.container-fluid -->
