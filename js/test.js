@@ -1,9 +1,10 @@
 
 var universidades;
+var estilo;
 
 $(function() {
     $.get("./data/universidades.json", function(data, status) {
-        console.log(data);
+        estilo=recuperarEstilo();
         universidades = new Map(data.map((universidad) => [getId(universidad), universidad]));
         mostrarUniversidades(data);
     });
@@ -25,7 +26,33 @@ function getId(universidad) {
 function agregarUniversidad(id,universidad){
     var row = $("<tr></tr>").attr("id", id);
     row.append($("<td></td").text(universidad.nombre));
-    console.log(universidad.nombre);
     $("#tabla").append(row);
 }
 
+
+
+function cambiarEstilo1(){
+    $("body").css("background-color", "yellowgreen");
+ 
+    $(".container-fluid").css({
+                              "text-align": "left", 
+                              "background-color":"yellowgreen"
+     });
+    guardarEstilo(estilo);
+ }
+
+ function cambiarEstilo2(){
+     $("body").css("background-color", "whitesmoke");
+ 
+     $(".container-fluid").css("background-color","whitesmoke");
+
+     guardarEstilo(estilo);
+  }
+ 
+  /*
+ $("#btn_estilos").click(function(e){
+   e.preventDefault();
+   var rutaEstilo = $(this).attr("href")
+   $("#linkestilo").attr("href", rutaEstilo)
+ })
+ */
