@@ -18,13 +18,14 @@
 
 	<!-- Include all compiled plugins (below), or include individual files as needed -->
 	<script src="js/bootstrap.min.js"></script>
-	
+
+	<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAEyUojND3jQtjYSHZ25PfuPuBUr_LA3mw&callback=initMap"></script>
 	<script src="js/test.js"></script>
 	<script type="text/javascript" src="js/storage.js"></script>
-	
+
 	<style>
 		#map {
-			height: 400px;
+			height: 500px;
 			width: 100%;
 		}
 	</style>
@@ -96,34 +97,22 @@
 
 	<div class="container">
 		<div class="row">
-			<div class="col-md-4">
-				<table id="tabla">
-					<tr>
-						<th>Universidad</th>
-					</tr>
-				</table>
-
-			</div>
 			<div class="col-md-8">
-				<div id="map"></div>
-				<script>
-					function initMap() {
-						var uluru = { lat: -25.363, lng: 131.044 };
-						var map = new google.maps.Map(document.getElementById('map'), {
-							zoom: 4,
-							center: uluru
-						});
-						var marker = new google.maps.Marker({
-							position: uluru,
-							map: map
-						});
-					}
-				</script>
-				<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAEyUojND3jQtjYSHZ25PfuPuBUr_LA3mw&callback=initMap"></script>
-			</div>
+				<div id="info">
 
-			<!-- Footer -->
-		<nav class="navbar navbar-default navbar-fixed-bottom">
+				</div>
+			</div>
+			<div class="col-md-4">
+				<div id="map"></div>
+			</div>
+		</div>
+
+		<div class="row">
+
+		</div>
+
+		
+		<nav class="navbar navbar-default navbar-bottom">
 			<div class="container clearfix">
 				<p class="navbar-text pull-left"> Estilo de visualizacion de Pagina </p>
 
@@ -133,14 +122,18 @@
 						<span class="caret"></span>
 					</button>
 					<ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu2">
-						<li role="presentation" id="estilo1"><a role="menuitem" tabindex="-1" href="#">Estilo 1</a></li>
-						<li role="presentation" id="estilo2"><a role="menuitem" tabindex="-1" href="#">Estilo 2</a></li>
+						<li role="presentation" id="estilo1">
+							<a role="menuitem" tabindex="-1" href="#">Estilo 1</a>
+						</li>
+						<li role="presentation" id="estilo2">
+							<a role="menuitem" tabindex="-1" href="#">Estilo 2</a>
+						</li>
 					</ul>
 				</div>
-			</div><!-- /.container-fluid -->
+			</div>
+
 		</nav>
 
-		</div>
 	</div>
 
 </body>
