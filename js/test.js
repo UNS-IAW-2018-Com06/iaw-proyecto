@@ -1,42 +1,43 @@
 
 var universidades;
 var map;
-//var estilo;
+var estilo;
 
 $(function () {
     $.get("./data/universidades.json", function (data, status) {
 
         initMap();
-        // estilo = recuperarEstilo();
+        estilo = recuperarEstilo();
+        setEstilo(estilo);
         universidades = new Map(data.map((universidad) => [getId(universidad), universidad]));
         mostrarUniversidades(data);
 
     });
 });
 
+function setEstilo(estilo) {
+
+
+    if (estilo == "true") {
+        console.log(estilo);
+        $('#toggle-box-checkbox').prop("checked", estilo).trigger("change");
+    }
+
+
+
+}
 
 function initMap() {
     map = new google.maps.Map(document.getElementById('map'), {
         zoom: 4,
         center: { lat: -37.0560032, lng: -65.9002859 }
     });
-    /*var geocoder = new google.maps.Geocoder();
-    geocoder.geocode({'address': 'Argentina'}, function(results, status) {
-        if (status === 'OK') {
-          map.setCenter(results[0].geometry.location);
-          
-        } else {
-          alert('Geocode was not successful for the following reason: ' + status);
-        }
-      });*/
 }
 
 function mostrarUniversidades(data) {
     var index;
 
     $.each(data, function (index, universidad) {
-        //var id = getId(universidad);
-        //agregarUniversidad(id,universidad);
         agregarUniversidadMapa(universidad);
     })
 }
@@ -50,6 +51,9 @@ function agregarUniversidadMapa(universidad) {
     });
     marker.addListener('click', function () {
         agregarUniversidad(getId(universidad), universidad);
+        $("#search").attr("placeholder", universidad.nombre).blur();
+        map.setCenter(marker.position);
+        map.setZoom(15);
     });
 }
 
@@ -58,40 +62,15 @@ function getId(universidad) {
 }
 
 function agregarUniversidad(id, universidad) {
-    //var row = $("<tr></tr>").attr("id", id);
-    //row.append($("<td></td").text(universidad.nombre));
     console.log(universidad.nombre);
-    $("#info").empty();
+   $("#info").empty();
     $("#info").append("<h1>" + universidad.nombre + "</h1>");
-    $("#info").append("<h2>" + universidad.provincia + "</h2>");
-    $("#info").append("<h2>" + universidad.ciudad + "</h2>");
-    $("#info").append("<h2>" + universidad.web + "</h2>");
+    $("#info").append("<p><b>Provincia : </b>" + universidad.provincia + "</p>");
+    $("#info").append("<p><b>Ciudad : </b>" + universidad.ciudad + "</p>");
+    $("#info").append("<p><b>Pagina Web : </b><a href=" + universidad.web + ">"+universidad.web+"</a></p>");
+    $("#comentario").append("<div class=\"form-group\">"
+                            +"<label for=\"comment\">Comentario:</label>"
+                            +"<textarea class=\"form-control\" rows=\"5\" id=\"comment\"></textarea>"
+                            +"</div>");
+                            
 }
-
-
-
-function cambiarEstilo1() {
-    $("body").css("background-color", "yellowgreen");
-
-    $(".container-fluid").css({
-        "text-align": "left",
-        "background-color": "yellowgreen"
-    });
-    guardarEstilo(estilo);
-}
-
-function cambiarEstilo2() {
-    $("body").css("background-color", "whitesmoke");
-
-    $(".container-fluid").css("background-color", "whitesmoke");
-
-    guardarEstilo(estilo);
-}
-
-  /*
- $("#btn_estilos").click(function(e){
-   e.preventDefault();
-   var rutaEstilo = $(this).attr("href")
-   $("#linkestilo").attr("href", rutaEstilo)
- })
- */

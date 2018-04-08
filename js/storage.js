@@ -1,9 +1,15 @@
-function guardarEstilo(estilo) {
-    window.localStorage.setItem("estilo", JSON.stringify(Array.from(estilo.values())));
+function guardarEstilo(checkbox) {
+   localStorage.checkbox = JSON.stringify(checkbox);
 }
 
 
 function recuperarEstilo() {
-    var result = window.localStorage.getItem("estilo");
-    return (result != undefined) ? new Set(JSON.parse(result)) : new Set();
+    console.log(localStorage.checkbox);
+    var result = localStorage.checkbox;
+    if(result == undefined){
+        return false;
+    }
+    else{
+        return result; 
+    }
 }
