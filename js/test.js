@@ -20,7 +20,7 @@ function initMap() {
         zoom: 4,
         center: {lat : -37.0560032, lng: -65.9002859}
     }); 
-    var geocoder = new google.maps.Geocoder();
+    /*var geocoder = new google.maps.Geocoder();
     geocoder.geocode({'address': 'Argentina'}, function(results, status) {
         if (status === 'OK') {
           map.setCenter(results[0].geometry.location);
@@ -28,7 +28,7 @@ function initMap() {
         } else {
           alert('Geocode was not successful for the following reason: ' + status);
         }
-      });
+      });*/
 }
 
 function mostrarUniversidades(data){
