@@ -68,22 +68,30 @@ function agregarUniversidad(id,universidad){
     $("#info").append("<h2>"+universidad.web+"</h2>");
 }
 
-/*function onActualizarEstilo(e) {
-    var id = $(e.target).parents("tr").attr("id");
 
-    //le cambio el estado
-    actualizarEstado(id, actualizarEstilo(id));
 
+function cambiarEstilo1(){
+    $("body").css("background-color", "yellowgreen");
+ 
+    $(".container-fluid").css({
+                              "text-align": "left", 
+                              "background-color":"yellowgreen"
+     });
     guardarEstilo(estilo);
-}
-*/
-/*function actualizarEstilo(id) {
-    var enPedido = !pedido.has(id);
-    if (enPedido) {
-        pedido.add(id);
-    } else {
-        pedido.delete(id);
-    }
-    return enPedido;
-}
-*/
+ }
+
+ function cambiarEstilo2(){
+     $("body").css("background-color", "whitesmoke");
+ 
+     $(".container-fluid").css("background-color","whitesmoke");
+
+     guardarEstilo(estilo);
+  }
+ 
+  /*
+ $("#btn_estilos").click(function(e){
+   e.preventDefault();
+   var rutaEstilo = $(this).attr("href")
+   $("#linkestilo").attr("href", rutaEstilo)
+ })
+ */
