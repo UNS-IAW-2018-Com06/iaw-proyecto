@@ -7,15 +7,15 @@
         "teléfono": "",
         "web": "http://www.uba.ar/",
         "coordenadas": [-34.599871,-58.373067],
-        "carreras de grado": [
+        "carreras_grado": [
             {
-                "nombre carrera": "Abogacia",
+                "nombre_carrera": "Abogacia",
                 "duración": 5
             }
         ],
-        "carreras de posgrado": [
+        "carreras_posgrado": [
             {
-                "nombre carrera": "",
+                "nombre_carrera": "",
                 "duración": ""
             }
         ],
@@ -29,15 +29,15 @@
         "teléfono": "",
         "web": "http://www.unc.edu.ar",
         "coordenadas": [-31.433894,-64.185911],
-        "carreras de grado": [
+        "carreras_grado": [
             {
-                "nombre carrera": "Abogacia",
+                "nombre_carrera": "Abogacia",
                 "duración": 5
             }
         ],
-        "carreras de posgrado": [
+        "carreras_posgrado": [
             {
-                "nombre carrera": "",
+                "nombre_carrera": "",
                 "duración": ""
             }
         ],
@@ -51,15 +51,15 @@
         "teléfono": "",
         "web": "http://www.uns.edu.ar",
         "coordenadas": [-38.700987,-62.270275],
-        "carreras de grado": [
+        "carreras_grado": [
             {
-                "nombre carrera": "Abogacia",
+                "nombre_carrera": "Abogacia",
                 "duración": 5
             }
         ],
-        "carreras de posgrado": [
+        "carreras_posgrado": [
             {
-                "nombre carrera": "",
+                "nombre_carrera": "",
                 "duración": ""
             }
         ],

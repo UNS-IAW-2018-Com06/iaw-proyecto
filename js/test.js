@@ -68,6 +68,9 @@ function agregarUniversidad(id, universidad) {
     $("#info").append("<p><b>Provincia : </b>" + universidad.provincia + "</p>");
     $("#info").append("<p><b>Ciudad : </b>" + universidad.ciudad + "</p>");
     $("#info").append("<p><b>Pagina Web : </b><a href=" + universidad.web + ">"+universidad.web+"</a></p>");
+    for(var i in universidad.carreras_grado){
+        console.log(universidad.carreras_grado[i].nombre_carrera);
+    }
     $("#comentario").append("<div class=\"form-group\">"
                             +"<label for=\"comment\">Comentario:</label>"
                             +"<textarea class=\"form-control\" rows=\"5\" id=\"comment\"></textarea>"
