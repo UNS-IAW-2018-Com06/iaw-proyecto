@@ -6,7 +6,7 @@
         "dirección": "Viamonte 430",
         "teléfono": "",
         "web": "http://www.uba.ar/",
-        "coordenadas": { "lat" : "-34.599871", "lng" : "-58.373067"},
+        "coordenadas": [-34.599871,-58.373067],
         "carreras de grado": [
             {
                 "nombre carrera": "Abogacia",
@@ -28,7 +28,7 @@
         "dirección": "Haya de la Torre s/n Pabellón Argentina",
         "teléfono": "",
         "web": "http://www.unc.edu.ar",
-        "coordenadas": { "lat" : "-31.433894", "lng" : "-64.185911"},
+        "coordenadas": [-31.433894,-64.185911],
         "carreras de grado": [
             {
                 "nombre carrera": "Abogacia",
@@ -50,7 +50,7 @@
         "dirección": "Av. Alem 1253",
         "teléfono": "",
         "web": "http://www.uns.edu.ar",
-        "coordenadas": { "lat": "-38.700987", "lng": "-62.270275"},
+        "coordenadas": [-38.700987,-62.270275],
         "carreras de grado": [
             {
                 "nombre carrera": "Abogacia",
