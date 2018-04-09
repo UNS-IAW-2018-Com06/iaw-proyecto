@@ -5,7 +5,6 @@ var estilo;
 
 $(function () {
     $.get("./data/universidades.json", function (data, status) {
-
         initMap();
         estilo = recuperarEstilo();
         setEstilo(estilo);
@@ -16,15 +15,9 @@ $(function () {
 });
 
 function setEstilo(estilo) {
-
-
     if (estilo == "true") {
-        console.log(estilo);
         $('#toggle-box-checkbox').prop("checked", estilo).trigger("change");
     }
-
-
-
 }
 
 function initMap() {
@@ -36,15 +29,12 @@ function initMap() {
 
 function mostrarUniversidades(data) {
     var index;
-
     $.each(data, function (index, universidad) {
         agregarUniversidadMapa(universidad);
     })
 }
 
 function agregarUniversidadMapa(universidad) {
-
-    console.log(universidad);
     var marker = new google.maps.Marker({
         position: new google.maps.LatLng(universidad.coordenadas[0], universidad.coordenadas[1]),
         map: map
@@ -62,15 +52,26 @@ function getId(universidad) {
 }
 
 function agregarUniversidad(id, universidad) {
-    console.log(universidad.nombre);
    $("#info").empty();
     $("#info").append("<h1>" + universidad.nombre + "</h1>");
     $("#info").append("<p><b>Provincia : </b>" + universidad.provincia + "</p>");
     $("#info").append("<p><b>Ciudad : </b>" + universidad.ciudad + "</p>");
     $("#info").append("<p><b>Pagina Web : </b><a href=" + universidad.web + ">"+universidad.web+"</a></p>");
+  
+    $("#info").append("<table class =\"carreras\">"+
+                      "<thead>"+
+                            "<tr>"+
+                                "<th> Carrera </th>"+
+                                "<th> Duracion </th>"+
+                             "</tr>"+
+                      "</thead>"+
+                      "<tbody>");
     for(var i in universidad.carreras_grado){
-        console.log(universidad.carreras_grado[i].nombre_carrera);
+      $("#info").append("<tr>"+ "<td>"+ universidad.carreras_grado[i].nombre_carrera +"</td>"+
+                                "<td>"+ universidad.carreras_grado[i].duración +"</td>"+"<tr>");              
     }
+    $("#info").append("</tbody> </table>");
+
     $("#comentario").append("<div class=\"form-group\">"
                             +"<label for=\"comment\">Comentario:</label>"
                             +"<textarea class=\"form-control\" rows=\"5\" id=\"comment\"></textarea>"
