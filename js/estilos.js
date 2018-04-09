@@ -12,3 +12,9 @@ function recuperarEstilo() {
         return result; 
     }
 }
+
+function setEstilo(estilo) {
+    if (estilo == "true") {
+        $('#toggle-box-checkbox').prop("checked", estilo).trigger("change");
+    }
+}
