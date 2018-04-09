@@ -52,29 +52,29 @@ function getId(universidad) {
 }
 
 function agregarUniversidad(id, universidad) {
-   $("#info").empty();
+    $("#info").empty();
     $("#info").append("<h1>" + universidad.nombre + "</h1>");
     $("#info").append("<p><b>Provincia : </b>" + universidad.provincia + "</p>");
     $("#info").append("<p><b>Ciudad : </b>" + universidad.ciudad + "</p>");
-    $("#info").append("<p><b>Pagina Web : </b><a href=" + universidad.web + ">"+universidad.web+"</a></p>");
-  
-    $("#info").append("<table class=\"table carreras\" id=\"tabla-carreras\">"+
-                      "<thead>"+
-                            "<tr>"+
-                                "<th> Carrera </th>"+
-                                "<th> Duracion </th>"+
-                             "</tr>"+
-                      "</thead>"+
-                      "<tbody> </tbody></table>");
-    for(var i in universidad.carreras_grado){
-      $("#tabla-carreras > tbody:last-child").append("<tr>"+ "<td>"+ universidad.carreras_grado[i].nombre_carrera +"</td>"+
-                                "<td>"+ universidad.carreras_grado[i].duración +"</td>"+"</tr>");              
-    }
+    $("#info").append("<p><b>Pagina Web : </b><a href=" + universidad.web + ">" + universidad.web + "</a></p>");
 
+    $("#info").append("<table class=\"table carreras\" id=\"tabla-carreras\">" +
+        "<thead>" +
+        "<tr>" +
+        "<th> Carrera </th>" +
+        "<th> Duracion </th>" +
+        "</tr>" +
+        "</thead>" +
+        "<tbody> </tbody></table>");
+    for (var i in universidad.carreras_grado) {
+        $("#tabla-carreras > tbody:last-child").append("<tr>" + "<td>" + universidad.carreras_grado[i].nombre_carrera + "</td>" +
+            "<td>" + universidad.carreras_grado[i].duración + "</td>" + "</tr>");
+    }
+    
     $("#comentario").empty();
     $("#comentario").append("<div class=\"form-group\">"
-                            +"<label for=\"comment\">Comentario:</label>"
-                            +"<textarea class=\"form-control\" rows=\"5\" id=\"comment\"></textarea>"
-                            +"</div>");
-                            
+        + "<label for=\"comment\">Comentario:</label>"
+        + "<textarea class=\"form-control\" rows=\"5\" id=\"comment\"></textarea>"
+        + "</div>");
+
 }
