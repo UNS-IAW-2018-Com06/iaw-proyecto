@@ -1,63 +1,57 @@
 
 var universidades;
 var map;
-var estilo;
 
 $(function () {
     $.get("./data/universidades.json", function (data, status) {
-        initMap();
-        estilo = recuperarEstilo();
+        map=initMap();
+        var estilo = recuperarEstilo();
         setEstilo(estilo);
         universidades = new Map(data.map((universidad) => [getId(universidad), universidad]));
-        mostrarUniversidades(data);
+        obtenerUniversidades(data);
 
     });
 });
 
-function setEstilo(estilo) {
-    if (estilo == "true") {
-        $('#toggle-box-checkbox').prop("checked", estilo).trigger("change");
-    }
+function getId(universidad) {
+    return universidad.nombre.replace(/\s/g, '');
 }
 
-function initMap() {
-    map = new google.maps.Map(document.getElementById('map'), {
-        zoom: 4,
-        center: { lat: -37.0560032, lng: -65.9002859 }
-    });
-}
-
-function mostrarUniversidades(data) {
+function obtenerUniversidades(data) {
     var index;
     $.each(data, function (index, universidad) {
-        agregarUniversidadMapa(universidad);
+        agregarUniversidadEnMapa(universidad);
     })
 }
 
-function agregarUniversidadMapa(universidad) {
+function agregarUniversidadEnMapa(universidad) {
     var marker = new google.maps.Marker({
         position: new google.maps.LatLng(universidad.coordenadas[0], universidad.coordenadas[1]),
         map: map
     });
     marker.addListener('click', function () {
-        agregarUniversidad(getId(universidad), universidad);
+        agregarUniversidad( universidad);
         $("#search").attr("placeholder", universidad.nombre).blur();
         map.setCenter(marker.position);
         map.setZoom(15);
     });
 }
 
-function getId(universidad) {
-    return universidad.nombre.replace(/\s/g, '');
-}
 
-function agregarUniversidad(id, universidad) {
-   $("#info").empty();
+function agregarUniversidad( universidad) {
+    mostrarDatos(universidad);
+    mostrarCarreras(universidad);
+    mostrarComentarios();
+}
+  
+function mostrarDatos(universidad){
+    $("#info").empty();
     $("#info").append("<h1>" + universidad.nombre + "</h1>");
     $("#info").append("<p><b>Provincia : </b>" + universidad.provincia + "</p>");
     $("#info").append("<p><b>Ciudad : </b>" + universidad.ciudad + "</p>");
     $("#info").append("<p><b>Pagina Web : </b><a href=" + universidad.web + ">"+universidad.web+"</a></p>");
-  
+}
+ function mostrarCarreras(universidad){
     $("#info").append("<table class=\"table carreras\" id=\"tabla-carreras\">"+
                       "<thead>"+
                             "<tr>"+
@@ -70,11 +64,13 @@ function agregarUniversidad(id, universidad) {
       $("#tabla-carreras > tbody:last-child").append("<tr>"+ "<td>"+ universidad.carreras_grado[i].nombre_carrera +"</td>"+
                                 "<td>"+ universidad.carreras_grado[i].duración +"</td>"+"</tr>");              
     }
+ }
 
+function mostrarComentarios(){
     $("#comentario").empty();
     $("#comentario").append("<div class=\"form-group\">"
                             +"<label for=\"comment\">Comentario:</label>"
                             +"<textarea class=\"form-control\" rows=\"5\" id=\"comment\"></textarea>"
                             +"</div>");
-                            
 }
+                            

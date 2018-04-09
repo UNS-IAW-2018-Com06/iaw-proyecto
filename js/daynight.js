@@ -8,16 +8,3 @@ $('#toggle-box-checkbox').on('change', function(){
     }
     guardarEstilo($('#toggle-box-checkbox').prop('checked'));
   });
-  
-  
-  
-  
-  // run demo if in searchresult preview
-  function demo(){
-      setInterval(function(){
-        $("#toggle-box-checkbox").trigger('click');
-      }, 1000);
-  }
-  if (document.location.pathname.indexOf('fullcpgrid')>-1){
-    demo();
-  }
