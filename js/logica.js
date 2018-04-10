@@ -1,10 +1,9 @@
 var universidades;
 var universidadSeleccionada;
-var map;
 
 $(function () {
     $.get("./data/universidades.json", function (data, status) {
-        map = initMap();
+        initMap();
         var estilo = recuperarEstilo();
         setEstilo(estilo);
         var universidades = new Map(data.map((universidad) => [getId(universidad), universidad]));
@@ -19,23 +18,15 @@ function getId(universidad) {
 
 function obtenerUniversidades(data) {
     var index;
+    $("#info").empty();
+    $("#info").append("<h1>Universidades Nacionales Argentinas</h1>");
+    $("#info").append("<table class=\"table table-hover universidades\" id=\"tabla-universidades\">" +
+        "<tbody> </tbody></table>");
+
     $.each(data, function (index, universidad) {
+        $("#tabla-universidades > tbody:last-child").append("<tr class=\"clickable-row\">" + "<td>" + universidad.nombre + "</td>" + "</tr>");
         agregarUniversidadEnMapa(universidad);
     })
-}
-
-function agregarUniversidadEnMapa(universidad) {
-    var marker = new google.maps.Marker({
-        position: new google.maps.LatLng(universidad.coordenadas[0], universidad.coordenadas[1]),
-        map: map
-    });
-    marker.addListener('click', function () {
-        agregarUniversidad(universidad);
-        universidadSeleccionada = universidad;
-        $("#search").attr("placeholder", universidad.nombre).blur();
-        map.setCenter(marker.position);
-        map.setZoom(15);
-    });
 }
 
 function agregarComentario(id) {
@@ -56,6 +47,7 @@ function mostrarDatos(universidad) {
     $("#info").append("<p><b>Ciudad : </b>" + universidad.ciudad + "</p>");
     $("#info").append("<p><b>Pagina Web : </b><a href=" + universidad.web + ">" + universidad.web + "</a></p>");
 }
+
 function mostrarCarreras(universidad) {
     $("#info").append("<table class=\"table carreras\" id=\"tabla-carreras\">" +
         "<thead>" +
@@ -84,6 +76,27 @@ function mostrarComentarios(universidad) {
         + "<label for=\"comment\">Deja tu comentario:</label>"
         + "<textarea class=\"form-control\"  id=\"comment\"></textarea>"
         + "<button onclick=\"agregarComentario()\" type=\"button\" class=\"btn btn-primary botonEnviar\">Enviar Comentario</button>"
+        + "</div>");
+}
+
+function mostrarFiltros() {
+    $("#filtro").append("<div class=\"col-md-4\"> " +
+        +" <span class= \"label label-default\" > Provincias : </span >"
+        + " <select class=\"custom-select\">"
+        + " <option selected>Todas</option>"
+        + " </select>"
+        + " </div >"
+        + " <div class=\"col-md-4\">"
+        + "    <span class=\"label label-default\">Ciudad : </span>"
+        + "    <select class=\"custom-select\">"
+        + "        <option selected>Todas</option>"
+        + " </select>"
+        + "</div>"
+        + "<div class=\"col-md-4\">"
+        + "    <span class=\"label label-default\">Carrera : </span>"
+        + "    <select class=\"custom-select\">"
+        + "        <option selected>Todas</option>"
+        + " </select>"
         + "</div>");
 }
 
