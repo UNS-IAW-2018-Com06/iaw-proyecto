@@ -103,9 +103,13 @@ body.night {
     width: 100%;
 }
 .comentario{
-  margin-top : 0px;
+  margin-top : 20px;
 }
 
 .principal{
   margin-top : 80px;
+}
+
+.botonEnviar{
+  margin-top : 10px;
 }
