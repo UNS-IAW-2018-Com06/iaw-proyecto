@@ -7,7 +7,7 @@ $(function () {
         map = initMap();
         var estilo = recuperarEstilo();
         setEstilo(estilo);
-        universidades = new Map(data.map((universidad) => [getId(universidad), universidad]));
+        var universidades = new Map(data.map((universidad) => [getId(universidad), universidad]));
         obtenerUniversidades(data);
 
     });

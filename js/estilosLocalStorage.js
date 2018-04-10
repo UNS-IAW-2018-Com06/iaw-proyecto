@@ -18,3 +18,5 @@ function setEstilo(estilo) {
         $('#toggle-box-checkbox').prop("checked", estilo).trigger("change");
     }
 }
+
+

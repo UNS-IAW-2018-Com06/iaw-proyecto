@@ -1,8 +1,6 @@
 function guardarComentario(id,comentario) {
     var lista = JSON.parse(localStorage.getItem(id));
-    console.log(lista);
     lista.push(comentario);
-    console.log(lista);
     localStorage.setItem(id,JSON.stringify(lista));
  }
  
