@@ -66,10 +66,16 @@ function mostrarDatos(universidad){
  }
 
 function mostrarComentarios(){
+    var comentarios = recuperarComentarios();  
     $("#comentario").empty();
     $("#comentario").append("<div class=\"form-group\">"
                             +"<label for=\"comment\">Comentario:</label>"
-                            +"<textarea class=\"form-control\" rows=\"5\" id=\"comment\"></textarea>"
+                            +"<textarea class=\"form-control\" rows=\"5\" id=\"comment\">"+comentarios+"</textarea>"
                             +"</div>");
+    $("#comentario").append("<button type=\"button\" id=\"enviarcomentario\" class=\"btn btn-outline-primary\">Enviar </button>");
+
+    $('#enviarcomentario').on('click', function(){
+        guardarComentario($('#comment').val());
+      });
 }
                             
