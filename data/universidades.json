@@ -11,6 +11,14 @@
             {
                 "nombre_carrera": "Abogacia",
                 "duración": 5
+            },
+            {
+                "nombre_carrera": "Agronomia",
+                "duración": 5
+            },
+            {
+                "nombre_carrera": "Arquitectura",
+                "duración": 5
             }
         ],
         "carreras_posgrado": [
@@ -33,6 +41,14 @@
             {
                 "nombre_carrera": "Abogacia",
                 "duración": 5
+            },
+            {
+                "nombre_carrera": "Administracion",
+                "duración": 3
+            },
+            {
+                "nombre_carrera": "Agronomia",
+                "duración": 5
             }
         ],
         "carreras_posgrado": [
@@ -54,6 +70,14 @@
         "carreras_grado": [
             {
                 "nombre_carrera": "Abogacia",
+                "duración": 5
+            },
+            {
+                "nombre_carrera": "Agrimensura",
+                "duración": 5
+            },
+            {
+                "nombre_carrera": "Arquitectura",
                 "duración": 5
             }
         ],
