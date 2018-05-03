@@ -6,12 +6,13 @@ function agregarUniversidadEnMapa(universidad) {
         map: map
     });
     marker.addListener('click', function () {
-        agregarUniversidad(universidad);
+        mostrarInfoUniversidad(universidad);
         universidadSeleccionada = universidad;
         $("#search").attr("placeholder", universidad.nombre).blur();
         map.panTo(marker.position);
         map.setZoom(15);
     });
+    marcadores.set(getId(universidad),marker);
 }
 
 function centrarMapa(controlDiv) {
@@ -44,8 +45,8 @@ function centrarMapa(controlDiv) {
     controlUI.addEventListener('click', function () {
         map.setCenter({ lat: -37.0560032, lng: -65.9002859 });
         map.setZoom(4);
+        mostrarUniversidades();
     });
-
 }
 
 function initMap() {
