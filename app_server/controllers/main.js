@@ -6,4 +6,3 @@ const index = function(req, res) {
       index
     }; 
 
-//LEA PUTO
