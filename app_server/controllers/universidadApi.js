@@ -17,6 +17,8 @@ const getUniversidades = function (req, res) {
 		})
 }
 
+//lucho puto
+
 module.exports = {
 	getUniversidades
 };
