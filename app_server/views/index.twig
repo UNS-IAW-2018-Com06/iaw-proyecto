@@ -15,9 +15,13 @@
 
 			<ul class="navbar-nav">
 				<li class="nav-item">
-					<a class="nav-link" href="#">
+					<a  href="/login/facebook" class="nav-link" href="#">
 						<i class="fas fa-user"></i> Ingresar</a>
 				</li>
+        <li class="nav-item">
+          <div class="fb-login-button" data-max-rows="1" data-size="small" data-button-type="continue_with" data-show-faces="false" data-auto-logout-link="false" data-use-continue-as="false"></div>
+
+        </li>
 			</ul>
 		</div>
 	</nav>
@@ -85,7 +89,7 @@
 {% block scripts %}
 	<script src='https://code.jquery.com/jquery-3.1.1.min.js'></script>
     <script type="text/javascript" src="twigjs/twig.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
+	  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
   	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAEyUojND3jQtjYSHZ25PfuPuBUr_LA3mw&callback=initMap"></script>
   	<script defer src="https://use.fontawesome.com/releases/v5.0.9/js/all.js" integrity="sha384-8iPTk2s/jMVj81dnzb/iFR2sdA7u06vHJyyLlAd4snFpCl/SnyUjRrbdJsw1pGIl" crossorigin="anonymous"></script>
@@ -93,5 +97,6 @@
   	<script type="text/javascript" src="javascripts/logica.js"></script>
   	<script type="text/javascript" src="javascripts/estilosLocalStorage.js"></script>
   	<script type="text/javascript" src="javascripts/mapa.js"></script>
+    <script type="text/javascript" src="javascripts/universidad.js"></script>
     <script src="javascripts/daynight.js"></script>
 {% endblock %}

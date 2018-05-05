@@ -3,7 +3,7 @@ var universidades
 var universidadSeleccionada;
 
 $(function () {
-    $.get("./data/universidades.json", function (data, status) {
+    $.get("./api/universidades", function (data, status) {
         initMap();
         var estilo = recuperarEstilo();
         setEstilo(estilo);

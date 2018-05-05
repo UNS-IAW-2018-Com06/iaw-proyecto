@@ -1,7 +1,8 @@
 const mongoose = require('mongoose');
 
-const dbURI = 'mongodb://localhost/universidad';
+const dbURI = 'mongodb://localhost/probando';
 mongoose.connect(dbURI);
+mongoose.set('debug', true);
 
 mongoose.connection.on('connected', () => {
   console.log(`Mongoose connected to ${dbURI}`);
