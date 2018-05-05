@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const dbURI = 'mongodb://localhost/probando';
+const dbURI = process.env.MLAB_URI;
 mongoose.connect(dbURI);
 mongoose.set('debug', true);
 
