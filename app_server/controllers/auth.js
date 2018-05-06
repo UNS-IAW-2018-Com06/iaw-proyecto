@@ -1,6 +1,7 @@
 var passport = require('passport');
 var User = require('../models/users');
 
+
 const getRegister = function (req, res) {
     res.render('register');
 };
@@ -21,17 +22,9 @@ const getLogin = function (req, res) {
     res.render('login', { user: req.user });
 };
 
-const login = function (req, res) {
-    passport.authenticate('facebook');
-};
+const login =  passport.authenticate('facebook');
 
-const loginCallback = function (req, res) {
-    passport.authenticate('facebook', { failureRedirect: '/login' }),
-        function (req, res) {
-            // Successful authentication, redirect home.
-            res.redirect('/');
-        }
-}
+const loginCallback = passport.authenticate('facebook', { failureRedirect: '/login' });
 
 const logout = function (req, res) {
     req.logout();
@@ -39,5 +32,5 @@ const logout = function (req, res) {
 };
 
 module.exports = {
-    getRegister, register, getLogin, login, logout
+    getRegister, register, getLogin, login, logout, loginCallback
 }; 
