@@ -22,7 +22,7 @@ const getLogin = function (req, res) {
     res.render('login', { user: req.user });
 };
 
-const login =  passport.authenticate('facebook');
+const login =  passport.authenticate('facebook',{ scope: ['email']});
 
 const loginCallback = passport.authenticate('facebook', { failureRedirect: '/login' });
 
