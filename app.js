@@ -5,7 +5,7 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 require('./app_server/models/db');
 const passport = require('passport');
-const Users = require('./app_server/models/users');
+const User = require('./app_server/models/user');
 var FacebookStrategy = require('passport-facebook').Strategy;
 
 
@@ -26,7 +26,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use(require('express-session')({
+app.use(express.session({
   secret: 'nodejs-twig-secret',
   resave: true,
   saveUninitialized: true
@@ -38,31 +38,50 @@ app.use('/api', apiRouter);
 app.use('/', authRouter);
 
 
+
+	// Serializa al usuario para almacenarlo en la sesión
+	passport.serializeUser(function(user, done) {
+		done(null, user);
+	});
+
+	// Deserializa el objeto usuario almacenado en la sesión para
+	// poder utilizarlo
+	passport.deserializeUser(function(obj, done) {
+		done(null, obj);
+	});
 // passport config
 // requires the model with Passport-Local Mongoose plugged in
 // use static authenticate method of model in LocalStrategy
 
 passport.use(new FacebookStrategy({
-  clientID: '580439325646370',
-  clientSecret: 'ad98705353412d3e21d8b646cb15bb0d',
-  callbackURL: "https://unimapoteca.herokuapp.com/",
-  profileFields: ['id', 'emails', 'displayName']
-},
-  function (accessToken, refreshToken, profile, cb) {
-    process.nextTick(function () {
-      console.log(profile);
+  clientID: config.facebook.key,
+  clientSecret: config.facebook.secret,
+  callbackURL: '/auth/facebook/callback',
+  profileFields: ['id', 'displayName', /*'provider',*/ 'photos']
+}, function (accessToken, refreshToken, profile, done) {
+  // El campo 'profileFields' nos permite que los campos que almacenamos
+  // se llamen igual tanto para si el usuario se autentica por Twitter o
+  // por Facebook, ya que cada proveedor entrega los datos en el JSON con
+  // un nombre diferente.
+  // Passport esto lo sabe y nos lo pone más sencillo con ese campo
+  User.findOne({ provider_id: profile.id }, function (err, user) {
+    if (err) throw (err);
+    if (!err && user != null) return done(null, user);
+
+    // Al igual que antes, si el usuario ya existe lo devuelve
+    // y si no, lo crea y salva en la base de datos
+    var user = new User({
+      provider_id: profile.id,
+      provider: profile.provider,
+      name: profile.displayName,
+      photo: profile.photos[0].value
     });
-  }
-));
-
-// use static serialize and deserialize of model for passport session support
-passport.serializeUser(function (user, cb) {
-  cb(null, user);
-});
-
-passport.deserializeUser(function (obj, cb) {
-  cb(null, obj);
-});
+    user.save(function (err) {
+      if (err) throw err;
+      done(null, user);
+    });
+  });
+}));
 
 
 app.use(passport.initialize());
