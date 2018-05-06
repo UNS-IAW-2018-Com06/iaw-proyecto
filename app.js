@@ -17,7 +17,7 @@ var authRouter = require('./app_server/routes/auth');
 var app = express();
 
 // view engine setup
-app.set('views', path.join(__dirname, 'app_server','views'));
+app.set('views', path.join(__dirname, 'app_server', 'views'));
 app.set('view engine', 'twig');
 
 app.use(logger('dev'));
@@ -34,8 +34,8 @@ app.use(require('express-session')({
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
-app.use('/api',apiRouter);
-app.use('/',authRouter);
+app.use('/api', apiRouter);
+app.use('/', authRouter);
 
 
 // passport config
@@ -45,21 +45,22 @@ app.use('/',authRouter);
 passport.use(new FacebookStrategy({
   clientID: '580439325646370',
   clientSecret: 'ad98705353412d3e21d8b646cb15bb0d',
-  callbackURL: "https://unimapoteca.herokuapp.com/"
+  callbackURL: "https://unimapoteca.herokuapp.com/",
+  profileFields: ['id', 'emails', 'displayName']
 },
-function(accessToken, refreshToken, profile, cb) {
-  process.nextTick(function () {                
-    console.log(profile)
- });      
-}
+  function (accessToken, refreshToken, profile, cb) {
+    process.nextTick(function () {
+      console.log(profile);
+    });
+  }
 ));
 
 // use static serialize and deserialize of model for passport session support
-passport.serializeUser(function(user, cb) {
+passport.serializeUser(function (user, cb) {
   cb(null, user);
 });
 
-passport.deserializeUser(function(obj, cb) {
+passport.deserializeUser(function (obj, cb) {
   cb(null, obj);
 });
 
@@ -69,12 +70,12 @@ app.use(passport.session());
 
 
 // catch 404 and forward to error handler
-app.use(function(req, res, next) {
+app.use(function (req, res, next) {
   next(createError(404));
 });
 
 // error handler
-app.use(function(err, req, res, next) {
+app.use(function (err, req, res, next) {
   // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
