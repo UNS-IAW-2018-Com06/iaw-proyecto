@@ -2,6 +2,11 @@ var marcadores;
 var universidades
 var universidadSeleccionada;
 
+const univerisdadTemplate = Twig.twig({
+    href: "shared/renderUniversidad.twig",async:false
+});
+
+
 $(function () {
     $.get("./api/universidades", function (data, status) {
         initMap();
@@ -26,11 +31,14 @@ function mostrarUniversidades() {
         "<tbody> </tbody></table>");
 
     $.each(universidades, function(index, universidad){
-        $("#tabla-universidades > tbody:last-child").append("<tr class=\"clickable-row\">" + "<td>" + universidad.nombre + "</td>" + "</tr>");
+     /*   var row = $(univerisdadTemplate.render({"universidad": universidad})).attr("id", universidad._id);
+        row.click(mostrarUniversidad);
+        $("#universidades").append(row);*/
         agregarUniversidadEnMapa(universidad);
     })
 
     $(document).ready(function($) {
+        var row
         $("#tabla-universidades tr").click(function(e) {
             $.each(universidades, function(index, universidad){
                 if(universidad.nombre == e.target.innerHTML){
@@ -39,6 +47,10 @@ function mostrarUniversidades() {
             })
         });
     });
+}
+
+function mostrarUniversidad(){
+    console.log("En construccion");
 }
 
 function agregarComentario(id) {

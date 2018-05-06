@@ -12,8 +12,7 @@ const universidadSchema = new mongoose.Schema({
         nombre_carrera: { type: String, required: true },
         duracion: { type: Number, required: true }
     }],
-    comentarios: [{ type: String }]
-
+    comentarios: {type : [String]}
 });
 
 mongoose.model('Universidad', universidadSchema, 'universidades');
