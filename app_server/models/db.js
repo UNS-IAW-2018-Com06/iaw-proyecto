@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const dbURI = process.env.MLAB_URI;
+const dbURI = 'mongodb://luciano:lucianoF@ds215380.mlab.com:15380/universidades';
 mongoose.connect(dbURI);
 mongoose.set('debug', true);
 
