@@ -5,6 +5,9 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 require('./app_server/models/db');
 const passport = require('passport');
+const Users = require('./app_server/models/users');
+var FacebookStrategy = require('passport-facebook').Strategy;
+
 
 var indexRouter = require('./app_server/routes/index');
 var usersRouter = require('./app_server/routes/users');
@@ -36,6 +39,33 @@ app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/api',apiRouter);
 app.use('/',authRouter);
+
+
+// passport config
+// requires the model with Passport-Local Mongoose plugged in
+// use static authenticate method of model in LocalStrategy
+
+passport.use(new FacebookStrategy({
+  clientID: '580439325646370',
+  clientSecret: 'ad98705353412d3e21d8b646cb15bb0d',
+  callbackURL: "https://unimapoteca.herokuapp.com/"
+},
+function(accessToken, refreshToken, profile, cb) {
+  Users.findOrCreate({ id: profile.id, name : profile.displayName }, function (err, user) {
+    return cb(err, user);
+  });
+}
+));
+
+// use static serialize and deserialize of model for passport session support
+passport.serializeUser(function(user, cb) {
+  cb(null, user);
+});
+
+passport.deserializeUser(function(obj, cb) {
+  cb(null, obj);
+});
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
