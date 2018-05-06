@@ -9,7 +9,7 @@ passport.use(new FacebookStrategy({
     callbackURL: "https://unimapoteca.herokuapp.com/"
   },
   function(accessToken, refreshToken, profile, cb) {
-    User.findOrCreate({ facebookId: profile.id }, function (err, user) {
+    User.findOrCreate({ id: profile.id, name : profile.displayName }, function (err, user) {
       return cb(err, user);
     });
   }
