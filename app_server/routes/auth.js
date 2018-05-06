@@ -7,7 +7,7 @@ router.post('/register', auth.register);
 
 router.get('/login', auth.login);
 router.get('/login/callback',auth.loginCallback,function (req, res) {
-    // Successful authentication, redirect home.
+    console.log("QCYO");
     res.redirect('/');
 });
 
