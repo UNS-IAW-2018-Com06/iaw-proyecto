@@ -1,5 +1,4 @@
-var router = require('express').Router();
-const passport = require('../auth/facebook');
+const router = require('express').Router();
 const auth = require('../controllers/auth');
 
 router.get('/register', auth.getRegister);

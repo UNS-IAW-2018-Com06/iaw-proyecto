@@ -26,7 +26,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use(express.session({
+app.use(require('express-session')({
   secret: 'nodejs-twig-secret',
   resave: true,
   saveUninitialized: true
@@ -54,10 +54,10 @@ app.use('/', authRouter);
 // use static authenticate method of model in LocalStrategy
 
 passport.use(new FacebookStrategy({
-  clientID: config.facebook.key,
-  clientSecret: config.facebook.secret,
-  callbackURL: '/auth/facebook/callback',
-  profileFields: ['id', 'displayName', /*'provider',*/ 'photos']
+  clientID: '580439325646370',
+  clientSecret: 'ad98705353412d3e21d8b646cb15bb0d',
+  callbackURL: "https://unimapoteca.herokuapp.com/",
+  profileFields: ['id', 'emails', 'displayName']
 }, function (accessToken, refreshToken, profile, done) {
   // El campo 'profileFields' nos permite que los campos que almacenamos
   // se llamen igual tanto para si el usuario se autentica por Twitter o
