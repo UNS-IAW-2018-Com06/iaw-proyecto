@@ -32,9 +32,6 @@ app.use(require('express-session')({
   saveUninitialized: true
 }));
 
-app.use(passport.initialize());
-app.use(passport.session());
-
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/api',apiRouter);
@@ -67,6 +64,10 @@ passport.serializeUser(function(user, cb) {
 passport.deserializeUser(function(obj, cb) {
   cb(null, obj);
 });
+
+
+app.use(passport.initialize());
+app.use(passport.session());
 
 
 // catch 404 and forward to error handler
