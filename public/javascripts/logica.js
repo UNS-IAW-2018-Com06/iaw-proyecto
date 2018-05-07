@@ -2,13 +2,17 @@ var marcadores;
 var universidades
 var universidadSeleccionada;
 
-const univerisdadTemplate = Twig.twig({
-    href: "shared/renderUniversidad.twig",async:false
+const univerisdadItemTemplate = Twig.twig({
+    href: "/shared/UniversidadesItem.twig", async: false
+});
+
+const universidadInfoTemplate = Twig.twig({
+    href: "shared/InfoUniversidad.twig", async :false
 });
 
 
 $(function () {
-    $.get("./api/universidades", function (data, status) {
+    $.get("./api/universidad/all", function (data, status) {
         initMap();
         var estilo = recuperarEstilo();
         setEstilo(estilo);
@@ -18,47 +22,29 @@ $(function () {
     });
 });
 
-function getId(universidad) {
-    return universidad.nombre.replace(/\s/g, '');
-}
-
 function mostrarUniversidades() {
-    var index;
-    $("#comentario").empty();
-    $("#info").empty();
-    $("#info").append("<h1>Universidades Nacionales Argentinas</h1>");
-    $("#info").append("<table class=\"table table-hover universidades\" id=\"tabla-universidades\">" +
-        "<tbody> </tbody></table>");
-
-    $.each(universidades, function(index, universidad){
-     /*   var row = $(univerisdadTemplate.render({"universidad": universidad})).attr("id", universidad._id);
+    $.each(universidades, function (index, universidad) {
+        var row = $(univerisdadItemTemplate.render({ "universidad": universidad })).attr("id", universidad._id);
         row.click(mostrarUniversidad);
-        $("#universidades").append(row);*/
+        $("#tabla-universidades").append(row);
         agregarUniversidadEnMapa(universidad);
     })
+}
 
-    $(document).ready(function($) {
-        var row
-        $("#tabla-universidades tr").click(function(e) {
-            $.each(universidades, function(index, universidad){
-                if(universidad.nombre == e.target.innerHTML){
-                    google.maps.event.trigger(marcadores.get(getId(universidad)),'click',{});
-                }
-            })
-        });
+function mostrarUniversidad(e) {
+    
+    var id = $(e.target).parents("tr").attr("id");
+
+    $("#lista-universidades").hide();
+    $.get("./api/universidad/" + id, function (data, status) {
+        $("#info-universidad").append($(universidadInfoTemplate.render({ "universidad": data })).attr("id",data._id));
+        mostrarInfoUniversidad(data);
+        centrarUniversidad(data.coordenadas[0],data.coordenadas[1])
     });
 }
 
-function mostrarUniversidad(){
-    console.log("En construccion");
-}
-
-function agregarComentario(id) {
-    guardarComentario(getId(universidadSeleccionada), $('#comment').val());
-    mostrarComentarios(universidadSeleccionada);
-}
-
 function mostrarFiltros() {
+
     $("#filtro").append("<div class=\"col-md-4\"> " +
         +" <span class= \"label label-default\" > Provincias : </span >"
         + " <select class=\"custom-select\">"

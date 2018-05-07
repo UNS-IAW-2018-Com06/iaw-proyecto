@@ -4,8 +4,8 @@ const universidadApi = require('../controllers/universidadApi');
 const comentarioApi  = require('../controllers/comentarioApi');
 const middleware     = require('../auth/middleware');
 
-/* GET home page. */
-router.get('/universidades',universidadApi.getUniversidades);
-router.post('/comentario',middleware,comentarioApi.setComentario);
+router.get('/universidad/all',universidadApi.getUniversidades);
+router.get('/universidad/:uniID',universidadApi.getUniversidad);
+router.post('/universidad/:uniID/comentar',middleware,comentarioApi.setComentario);
 
 module.exports = router;

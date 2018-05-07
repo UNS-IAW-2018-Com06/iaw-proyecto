@@ -1,38 +1,8 @@
 {% extends 'layout.twig' %}
 
 {% block body %}
-	<nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
-		<a class="navbar-brand" href="#">Mapoteca</a>
-		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-		 aria-expanded="false" aria-label="Toggle navigation">
-			<span class="navbar-toggler-icon"></span>
-		</button>
 
-		<div class="collapse navbar-collapse" id="navbarSupportedContent">
-			<form class="form-inline mx-auto">
-				<input class="form-control" type="search" placeholder="Search" aria-label="Search">
-			</form>
-
-			<ul class="navbar-nav">
-
-      {% if user %}
-            <li class="nav-item">
-            <a href="/logout">{{user.username}}</a>
-            </li>
-        {% else %}
-            <li class="nav-item">
-					<a  href="/login" class="nav-link" href="#">
-						<i class="fas fa-user"></i> Ingresar</a>
-				</li>
-        <li class="nav-item">
-          <a  href="/register" class="nav-link" href="#">
-						<i class="fas fa-user"></i> Registrar</a>
-        </li>
-        {% endif %}
-				
-			</ul>
-		</div>
-	</nav>
+{% include 'navbar.twig' %}
 
 	<div class="container">
 
@@ -41,14 +11,21 @@
 
 		<div class="row principal">
 			<div class="col-md-8">
-				<div id="info"></div>
+				<div id="lista-universidades">
+					{% include "/shared/Universidades.twig"%}
+				</div>
+				<div id="info-universidad"></div>
 			</div>
 			<div class="col-md-4">
 				<div id="map"></div>
 			</div>
 		</div>
-		
-		{% include "comentario.twig" %}
+
+		<div class="row comentario">
+			<div class="col-md-12">
+				<div id="comentario"></div>
+			</div>
+		</div>
 
 	</div>
 
@@ -92,13 +69,13 @@
 {% endblock %}
 
 {% block scripts %}
-	  <script src='https://code.jquery.com/jquery-3.1.1.min.js'></script>
-	  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
+	<script src='https://code.jquery.com/jquery-3.1.1.min.js'></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
   	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAEyUojND3jQtjYSHZ25PfuPuBUr_LA3mw&callback=initMap"></script>
   	<script defer src="https://use.fontawesome.com/releases/v5.0.9/js/all.js" integrity="sha384-8iPTk2s/jMVj81dnzb/iFR2sdA7u06vHJyyLlAd4snFpCl/SnyUjRrbdJsw1pGIl" crossorigin="anonymous"></script>
-  	<script async defer type="text/javascript" src="/twigjs/twig.min.js"></script>
-    <script type="text/javascript" src="/javascripts/comentariosLocalStorage.js"></script>
+  	<script type="text/javascript" src="/twigjs/twig.min.js"></script>
+    <script type="text/javascript" src="/javascripts/storage.js"></script>
   	<script type="text/javascript" src="/javascripts/logica.js"></script>
   	<script type="text/javascript" src="/javascripts/estilosLocalStorage.js"></script>
   	<script type="text/javascript" src="/javascripts/mapa.js"></script>

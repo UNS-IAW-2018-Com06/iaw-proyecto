@@ -1,18 +1,23 @@
 var map;
 
 function agregarUniversidadEnMapa(universidad) {
+
     var marker = new google.maps.Marker({
         position: new google.maps.LatLng(universidad.coordenadas[0], universidad.coordenadas[1]),
-        map: map
+        map: map,
+        id : universidad._id
     });
+    marcadores.set(marker,universidad._id);
     marker.addListener('click', function () {
-        mostrarInfoUniversidad(universidad);
-        universidadSeleccionada = universidad;
-        $("#search").attr("placeholder", universidad.nombre).blur();
-        map.panTo(marker.position);
-        map.setZoom(15);
+        $("#"+marker.id).children().trigger('click');
+        
     });
-    marcadores.set(getId(universidad),marker);
+}
+
+function centrarUniversidad(lt, lg){
+
+    map.panTo({lat: lt, lng : lg});
+    map.setZoom(15);
 }
 
 function centrarMapa(controlDiv) {
@@ -45,7 +50,9 @@ function centrarMapa(controlDiv) {
     controlUI.addEventListener('click', function () {
         map.setCenter({ lat: -37.0560032, lng: -65.9002859 });
         map.setZoom(4);
-        mostrarUniversidades();
+        $("#comentario").empty();
+        $("#info-universidad").empty();
+        $("#lista-universidades").show();
     });
 }
 

@@ -6,6 +6,8 @@ const bodyParser = require('body-parser');
 const logger = require('morgan');
 require('./app_server/models/db');
 const passport = require('passport');
+const Strategy = require('passport-facebook').Strategy;
+
 
 const indexRouter = require('./app_server/routes/index');
 const apiRouter = require('./app_server/routes/api');
@@ -42,11 +44,42 @@ app.use('/api', apiRouter);
 //passport config
 const User = require('./app_server/models/user');
 
-
 passport.use(User.createStrategy());
+
+
+//Facebook strategy
+passport.use(new Strategy({
+  clientID: '580439325646370',
+  clientSecret: 'ad98705353412d3e21d8b646cb15bb0d',
+  callbackURL: 'http://unimapoteca.herokuapp.com/'
+},
+function(accessToken, refreshToken, profile, cb) {
+  // In this example, the user's Facebook profile is supplied as the user
+  // record.  In a production-quality application, the Facebook profile should
+  // be associated with a user record in the application's database, which
+  // allows for account linking and authentication with other identity
+  // providers.
+  return cb(null, profile);
+}));
 
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
+
+
+app.get('/login/facebook',
+  passport.authenticate('facebook'));
+
+app.get('/login/facebook/return', 
+  passport.authenticate('facebook', { failureRedirect: '/login' }),
+  function(req, res) {
+    res.redirect('/');
+  });
+
+app.get('/profile',
+  function(req, res){
+    res.render('profile', { user: req.user });
+  });
+
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

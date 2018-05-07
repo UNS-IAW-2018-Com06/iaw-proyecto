@@ -3,7 +3,11 @@ const Universidad = mongoose.model('Universidad');
 
 
 const setComentario = function(req,res){
-    Universidad.update({_id: req.universidad._id},{comentarios : req.body.comentario},
+    console.log("ID: "+req.body.id);
+    console.log("COMENTARIO: "+req.body.comentario);
+    console.log("USUARIO"+ req.user.username);
+    
+    Universidad.update({_id: req.body.id},{ "$push": { "comentarios.usuario": req.user.username, "comentarios.comentario": req.body.comentario} },
         {upsert: true, setDefaultsOnInsert: true}, (err, comentario) => {
             if (err) { 
                 res
@@ -15,6 +19,7 @@ const setComentario = function(req,res){
                     .json(comentario);
             }
         })
+        
 }
 
 module.exports = {
