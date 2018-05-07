@@ -34,8 +34,8 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 app.use(express.static(path.join(__dirname, 'public')));
-app.use('/twigjs/twig.min.js',  express.static(__dirname + '/node_modules/twig/twig.min.js'));
-app.use('/shared',  express.static(__dirname + '/app_server/views/shared'));
+app.use('/twigjs/twig.min.js', express.static(__dirname + '/node_modules/twig/twig.min.js'));
+app.use('/shared', express.static(__dirname + '/app_server/views/shared'));
 
 app.use('/', indexRouter);
 app.use('/', authRouter);
@@ -55,22 +55,26 @@ passport.use(new Strategy({
   profileFields: ['id', 'displayName', 'name'],
   enableProof: true
 },
-function(accessToken, refreshToken, profile, cb) {
-  User.findOrCreate({ facebookId: profile.id }, function (err, user) {
-    console.log(profile.displayName);
-    return cb(err, user);
-  });
-}));
+  function (accessToken, refreshToken, profile, cb) {
+    User.register({ username: profile.displayName }, profile.id, function (err, user) {
+      if (err) {
+        return res.render('register', { user: user });
+      }
+      passport.authenticate('local')(req, res, function () {
+        res.redirect('/');
+      });
+    });
+  }));
 
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
 
 app.get('/login/facebook',
-  passport.authenticate('facebook',{scope: ['public_profile']}));
+  passport.authenticate('facebook', { scope: ['public_profile'] }));
 
-app.get('/login/facebook/callback', 
-  passport.authenticate('facebook', { successRedirect: '/' , failureRedirect: '/login' }));
+app.get('/login/facebook/callback',
+  passport.authenticate('facebook', { successRedirect: '/', failureRedirect: '/login' }));
 
 
 // catch 404 and forward to error handler
