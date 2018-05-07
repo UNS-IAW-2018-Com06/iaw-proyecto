@@ -56,11 +56,8 @@ passport.use(new Strategy({
   enableProof: true
 },
   function (accessToken, refreshToken, profile, cb) {
-    User.register({ username: profile.displayName }, profile.id, function (err, user) {
-      if (err) {
-        console.log("error");
-      }
-      res.redirect('/');      
+    process.nextTick(function () {
+      return done(null, profile);
     });
   }));
 
@@ -72,7 +69,10 @@ app.get('/login/facebook',
   passport.authenticate('facebook', { scope: ['public_profile'] }));
 
 app.get('/login/facebook/callback',
-  passport.authenticate('facebook', { successRedirect: '/', failureRedirect: '/login' }));
+  passport.authenticate('facebook', { successRedirect: '/', failureRedirect: '/login' }),
+  function(req, res) {
+    res.redirect('/');
+  });
 
 
 // catch 404 and forward to error handler
