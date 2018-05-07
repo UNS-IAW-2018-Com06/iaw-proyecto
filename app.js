@@ -66,9 +66,10 @@ passport.deserializeUser(User.deserializeUser());
 app.get('/login/facebook',
   passport.authenticate('facebook',{scope: ['public_profile']}));
 
-app.get('/login/facebook/return', 
+app.get('/login/facebook/callback', 
   passport.authenticate('facebook', { failureRedirect: '/login' }),
   function(req, res) {
+    console.log("AHRE LOCOOOOO");
     res.redirect('/');
   });
 
