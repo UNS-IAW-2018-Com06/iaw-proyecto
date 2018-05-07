@@ -60,9 +60,12 @@ passport.use(new Strategy({
     return cb(null, profile);
   }));
 
-passport.serializeUser(User.serializeUser());
-passport.deserializeUser(User.deserializeUser());
-
+passport.serializeUser(function(user, cb) {
+  cb(null, user);
+});
+passport.deserializeUser(function(obj, cb) {
+  cb(null, obj);
+});
 
 app.get('/login/facebook',
   passport.authenticate('facebook', { scope: ['public_profile'] }));
