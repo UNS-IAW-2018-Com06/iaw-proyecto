@@ -51,7 +51,7 @@ passport.use(User.createStrategy());
 passport.use(new Strategy({
   clientID: '580439325646370',
   clientSecret: 'ad98705353412d3e21d8b646cb15bb0d',
-  callbackURL: 'https://unimapoteca.herokuapp.com/',
+  callbackURL: 'https://unimapoteca.herokuapp.com/login/facebook/callback',
   profileFields: ['id', 'displayName', 'name'],
   enableProof: true
 },
