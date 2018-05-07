@@ -56,10 +56,7 @@ passport.use(new Strategy({
   enableProof: true
 },
 function(accessToken, refreshToken, profile, cb) {
-  process.nextTick(function () {
-    console.log("ahre");
-    return done(null, profile);  // <- call this
-  });
+  console.log(profile);
 }));
 
 passport.serializeUser(User.serializeUser());
