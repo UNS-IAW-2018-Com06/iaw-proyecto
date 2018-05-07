@@ -58,7 +58,7 @@ passport.use(new Strategy({
   function (accessToken, refreshToken, profile, cb) {
     User.register({ username: profile.displayName }, profile.id, function (err, user) {
       if (err) {
-        return res.render('register', { user: user });
+        console.log("error");
       }
       passport.authenticate('local')(req, res, function () {
         res.redirect('/');
