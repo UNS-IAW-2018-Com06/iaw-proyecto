@@ -70,6 +70,7 @@ app.get('/login/facebook',
 app.get('/login/facebook/callback',
   passport.authenticate('facebook', { successRedirect: '/', failureRedirect: '/login' }),
   function(req, res) {
+    console.log("Hola");
     res.redirect('/');
   });
 
