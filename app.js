@@ -56,8 +56,10 @@ passport.use(new Strategy({
   enableProof: true
 },
 function(accessToken, refreshToken, profile, cb) {
-  console.log("AHRE LOCO");
-  return cb(null, profile);
+  process.nextTick(function () {
+    console.log("ahre");
+    return done(null, profile);  // <- call this
+  });
 }));
 
 passport.serializeUser(User.serializeUser());
@@ -68,11 +70,7 @@ app.get('/login/facebook',
   passport.authenticate('facebook',{scope: ['public_profile']}));
 
 app.get('/login/facebook/callback', 
-  passport.authenticate('facebook', { failureRedirect: '/login' }),
-  function(req, res) {
-    console.log("AHRE LOCOOOOO");
-    res.redirect('/');
-  });
+  passport.authenticate('facebook', { successRedirect: '/' , failureRedirect: '/login' }));
 
 app.get('/profile',
   function(req, res){
