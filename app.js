@@ -60,9 +60,7 @@ passport.use(new Strategy({
       if (err) {
         console.log("error");
       }
-      passport.authenticate('local')(req, res, function () {
-        res.redirect('/');
-      });
+      res.redirect('/');      
     });
   }));
 
