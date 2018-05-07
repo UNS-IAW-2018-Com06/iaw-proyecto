@@ -56,7 +56,10 @@ passport.use(new Strategy({
   enableProof: true
 },
 function(accessToken, refreshToken, profile, cb) {
-  console.log(profile);
+  User.findOrCreate({ facebookId: profile.id }, function (err, user) {
+    console.log(profile.displayName);
+    return cb(err, user);
+  });
 }));
 
 passport.serializeUser(User.serializeUser());
@@ -68,11 +71,6 @@ app.get('/login/facebook',
 
 app.get('/login/facebook/callback', 
   passport.authenticate('facebook', { successRedirect: '/' , failureRedirect: '/login' }));
-
-app.get('/profile',
-  function(req, res){
-    res.render('profile', { user: req.user });
-  });
 
 
 // catch 404 and forward to error handler
