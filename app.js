@@ -52,10 +52,11 @@ passport.use(new Strategy({
   clientID: '580439325646370',
   clientSecret: 'ad98705353412d3e21d8b646cb15bb0d',
   callbackURL: 'https://unimapoteca.herokuapp.com/',
-  profileFields: ['id', 'displayName', 'name']
+  profileFields: ['id', 'displayName', 'name'],
+  enableProof: true
 },
 function(accessToken, refreshToken, profile, cb) {
-  console.log(profile);
+  console.log("AHRE LOCO");
   return cb(null, profile);
 }));
 
