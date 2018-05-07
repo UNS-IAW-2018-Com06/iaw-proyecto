@@ -51,14 +51,11 @@ passport.use(User.createStrategy());
 passport.use(new Strategy({
   clientID: '580439325646370',
   clientSecret: 'ad98705353412d3e21d8b646cb15bb0d',
-  callbackURL: 'https://unimapoteca.herokuapp.com/'
+  callbackURL: 'https://unimapoteca.herokuapp.com/',
+  profileFields: ['id', 'displayName', 'name']
 },
 function(accessToken, refreshToken, profile, cb) {
-  // In this example, the user's Facebook profile is supplied as the user
-  // record.  In a production-quality application, the Facebook profile should
-  // be associated with a user record in the application's database, which
-  // allows for account linking and authentication with other identity
-  // providers.
+  console.log(profile);
   return cb(null, profile);
 }));
 
@@ -67,7 +64,7 @@ passport.deserializeUser(User.deserializeUser());
 
 
 app.get('/login/facebook',
-  passport.authenticate('facebook'));
+  passport.authenticate('facebook',{scope: ['public_profile']}));
 
 app.get('/login/facebook/return', 
   passport.authenticate('facebook', { failureRedirect: '/login' }),
