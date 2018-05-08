@@ -15,9 +15,11 @@
         {% if user %}
             <li class="nav-item">
                 {% if user.photos[0].value %}
-                    <img src={{user.photos[0].value }} href="#" class="rounded float-left" alt="logo">
+                    <img src={{user.photos[0].value }} href="/logout" alt="Desloguearse">
+				{% else %}
+					 <a class="userDisplay" href="/logout">{{user.displayName}}</a>
                 {% endif %}
-                <a href="/logout">{{user.displayName}}</a>
+               
             </li>
         {% else %}
             <li class="nav-item">
