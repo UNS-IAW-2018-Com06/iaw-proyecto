@@ -14,11 +14,13 @@
 
         {% if user %}
             <li class="nav-item">
+					<a class="userDisplay" href="/logout">{{user.displayName}}
                 {% if user.photos[0].value %}
-                    <img src={{user.photos[0].value }} href="/logout" alt="Desloguearse">
+                    <img src={{user.photos[0].value }} style="width: 40px;"alt="Desloguearse">
 				{% else %}
-					 <a class="userDisplay" href="/logout">{{user.displayName}}</a>
+					 {{user.displayName}}
                 {% endif %}
+					</a>
                
             </li>
         {% else %}
