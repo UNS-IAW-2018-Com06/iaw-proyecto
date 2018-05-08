@@ -14,6 +14,7 @@ const setComentario = function(req,res){
                     .status(400)
                     .json(err);    
             } else {
+                console.log("Comentario Agregado");
                 res
                     .status(201)
                     .json(comentario);

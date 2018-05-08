@@ -4,9 +4,9 @@
 
 {% include 'navbar.twig' %}
 
-<div class="container" style="margin-top : 20px;">
+<div class="container">
 
-	<form action="login" method="post">
+	<form action="login" method="post" class="formlogin">
 		<div class="form-group">
     		<label for="inputUser">Usuario</label>
     		<input type="text" name="username" class="form-control" id="inputUser" placeholder="Ingresa su usuario">
@@ -15,12 +15,16 @@
     		<label for="inputPassword">Password</label>
     		<input type="password" name="password" class="form-control" id="inputPassword" placeholder="Ingrese su contraseña">
   		</div>
-		<button type="submit" class="btn btn-primary">Ingresar</button>
+		<button type="submit" class="btn btn-lg btn-block btn-primary "><i class="fas fa-sign-in-alt"></i> Ingresar</button>
 		<a class="btn btn-block btn-social btn-facebook" href="/login/facebook">
-    		<span class="fa fa-facebook"></span> Ingresar con Facebook
+    		<i class="fab fa-facebook-f"></i> Ingresar con Facebook
   		</a>
+
+
 	</form>
 </div>
+
+{% include 'footer.twig' %}
 {% endblock %}
 
 {% block scripts %}

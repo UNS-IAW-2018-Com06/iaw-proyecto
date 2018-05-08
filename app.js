@@ -10,8 +10,9 @@ const Strategy = require('passport-facebook').Strategy;
 
 
 const indexRouter = require('./app_server/routes/index');
-const apiRouter = require('./app_server/routes/api');
-const authRouter = require('./app_server/routes/auth');
+const apiRouter = require('./app_server/routes/apiUniversidad');
+const authLocalRouter = require('./app_server/routes/authLocal');
+const authFacebookRouter = require('./app_server/routes/authFacebok');
 const app = express();
 
 // view engine setup
@@ -38,7 +39,8 @@ app.use('/twigjs/twig.min.js', express.static(__dirname + '/node_modules/twig/tw
 app.use('/shared', express.static(__dirname + '/app_server/views/shared'));
 
 app.use('/', indexRouter);
-app.use('/', authRouter);
+app.use('/', authLocalRouter);
+app.use('/', authFacebookRouter);
 app.use('/api', apiRouter);
 
 //passport config
@@ -46,13 +48,12 @@ const User = require('./app_server/models/user');
 
 passport.use(User.createStrategy());
 
-
 //Facebook strategy
 passport.use(new Strategy({
   clientID: '580439325646370',
   clientSecret: 'ad98705353412d3e21d8b646cb15bb0d',
   callbackURL: 'https://unimapoteca.herokuapp.com/login/facebook/callback',
-  profileFields: ['id', 'displayName', 'name'],
+  profileFields: ['id', 'displayName', 'name', 'photos'],
   enableProof: true
 },
   function (accessToken, refreshToken, profile, cb) {
@@ -66,17 +67,6 @@ passport.serializeUser(function(user, cb) {
 passport.deserializeUser(function(obj, cb) {
   cb(null, obj);
 });
-
-app.get('/login/facebook',
-  passport.authenticate('facebook', { scope: ['public_profile'] }));
-
-app.get('/login/facebook/callback',
-  passport.authenticate('facebook', { successRedirect: '/', failureRedirect: '/login' }),
-  function(req, res) {
-    console.log("Hola");
-    res.redirect('/');
-  });
-
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

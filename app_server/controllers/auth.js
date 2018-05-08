@@ -6,7 +6,7 @@ const getRegister = function (req, res) {
 };
 
 const register = function (req, res) {
-    User.register({ username: req.body.username }, req.body.password, function (err, user) {
+    User.register({ displayName: req.body.username, username : req.body.username }, req.body.password, function (err, user) {
         if (err) {
             return res.render('register', { user: user });
         }
