@@ -14,8 +14,9 @@ const setComentario = function(req,res){
                     .status(400)
                     .json(err);    
             } else {
-                console.log("Comentario Agregado");
-                res.redirect('/api/universidad/'+req.body.id);
+                res
+                    .status(201)
+                    .json(comentario);
             }
         })
         

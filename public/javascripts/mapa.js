@@ -7,7 +7,6 @@ function agregarUniversidadEnMapa(universidad) {
         map: map,
         id : universidad._id
     });
-    marcadores.set(marker,universidad._id);
     marker.addListener('click', function () {
         $("#"+marker.id).children().trigger('click');
         

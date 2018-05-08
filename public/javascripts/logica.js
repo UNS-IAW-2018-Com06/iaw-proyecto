@@ -1,6 +1,3 @@
-var marcadores;
-var universidades
-var universidadSeleccionada;
 
 const univerisdadItemTemplate = Twig.twig({
     href: "/shared/UniversidadesItem.twig", async: false
@@ -11,19 +8,20 @@ const universidadInfoTemplate = Twig.twig({
 });
 
 
+
 $(function () {
     $.get("./api/universidad/all", function (data, status) {
         initMap();
         var estilo = recuperarEstilo();
         setEstilo(estilo);
-        universidades = data;
-        marcadores = new Map();
-        mostrarUniversidades();
+        mostrarUniversidades(data);
+        $("#filtros").hide();
     });
+    
 });
 
-function mostrarUniversidades() {
-    $.each(universidades, function (index, universidad) {
+function mostrarUniversidades(data) {
+    $.each(data, function (index, universidad) {
         var row = $(univerisdadItemTemplate.render({ "universidad": universidad })).attr("id", universidad._id);
         row.click(mostrarUniversidad);
         $("#tabla-universidades").append(row);
@@ -43,25 +41,8 @@ function mostrarUniversidad(e) {
     });
 }
 
-function mostrarFiltros() {
+function mostrarFiltros(){
+    $("#filtros").toggle();
 
-    $("#filtro").append("<div class=\"col-md-4\"> " +
-        +" <span class= \"label label-default\" > Provincias : </span >"
-        + " <select class=\"custom-select\">"
-        + " <option selected>Todas</option>"
-        + " </select>"
-        + " </div >"
-        + " <div class=\"col-md-4\">"
-        + "    <span class=\"label label-default\">Ciudad : </span>"
-        + "    <select class=\"custom-select\">"
-        + "        <option selected>Todas</option>"
-        + " </select>"
-        + "</div>"
-        + "<div class=\"col-md-4\">"
-        + "    <span class=\"label label-default\">Carrera : </span>"
-        + "    <select class=\"custom-select\">"
-        + "        <option selected>Todas</option>"
-        + " </select>"
-        + "</div>");
 }
 

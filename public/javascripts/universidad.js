@@ -22,7 +22,12 @@ function mostrarCarrerasUniversidad(universidad) {
 function mostrarComentariosUniversidad(universidad) {
     $("#comentario").append(comentarioTemplate.render());
     for (var i in universidad.comentarios) {
-        var row = $(comentarioItemTemplate.render({ "comentario": universidad.comentarios[i] }));
-        $("#tabla-comentarios").append(row);
+        agregarComentarioUniversidad(universidad.comentarios[i]);
     }
+}
+
+function agregarComentarioUniversidad(comentario) {
+    var row = $(comentarioItemTemplate.render({ "comentario": comentario }));
+    $("#tabla-comentarios").append(row);
+
 }
