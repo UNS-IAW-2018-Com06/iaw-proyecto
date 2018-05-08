@@ -14,8 +14,8 @@
 
         {% if user %}
             <li class="nav-item">
-                {% if user.photos %}
-                    <img src={{user.photos}} href="#" class="rounded float-left" alt="logo">
+                {% if user.photos[0].value %}
+                    <img src={{user.photos[0].value }} href="#" class="rounded float-left" alt="logo">
                 {% endif %}
                 <a href="/logout">{{user.displayName}}</a>
             </li>

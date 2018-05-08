@@ -1,10 +1,5 @@
 const mongoose = require('mongoose');
 
-const comentarioSchema = new mongoose.Schema({
-    usuario : String,
-    comentario : String,
-});
-
 const universidadSchema = new mongoose.Schema({
     nommbre: { type: String, required: true },
     provincia: { type: String, required: true },
