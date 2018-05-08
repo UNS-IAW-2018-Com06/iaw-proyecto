@@ -14,7 +14,7 @@
 
         {% if user %}
             <li class="nav-item">
-					<a class="userDisplay" href="/logout">{{user.displayName}}
+					<a class="userDisplay" href="/logout">
                 {% if user.photos[0].value %}
                     <img src={{user.photos[0].value }} style="width: 40px;"alt="Desloguearse">
 				{% else %}
@@ -25,18 +25,11 @@
             </li>
         {% else %}
             <li class="nav-item">
-					<a  href="/login" class="nav-link" href="#">
-						<i class="fas fa-user"></i> Ingresar</a>
-				</li>
-            <li class="nav-item">
-            <a class="btn btn-block btn-social btn-facebook" href="/login/facebook">
-    		<i class="fab fa-facebook-f"></i> Ingresar con Facebook
-  		</a>
-            </li>
-        <li class="nav-item">
-          <a  href="/register" class="nav-link" href="#">
-						<i class="fas fa-user"></i> Registrar</a>
-        </li>
+				<a role="button" class="btn btn-primary" href="/login"><i class="fas fa-sign-in-alt"></i> Ingresar</a>
+			</li>
+        	<li class="nav-item">
+				<a role="button" class="btn btn-primary" href="/register"><i class="fas fa-user-plus"></i> Registrarse</a>
+        	</li>
         {% endif %}
 				
 			</ul>

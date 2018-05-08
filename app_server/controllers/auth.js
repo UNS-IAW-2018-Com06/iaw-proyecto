@@ -17,7 +17,7 @@ const register = function (req, res) {
 };
 
 const getLogin = function (req, res) {
-    res.render('login', { user: req.user });
+    res.render('login', { user: req.user, title : "Login" });
 };
 
 const login = function (req, res) {

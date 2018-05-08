@@ -1,5 +1,5 @@
 const index = function (req, res) {
-    res.render('index', { user: req.user , titulo : 'UniMapoteca' });
+    res.render('index', { user: req.user , title : 'UniMapoteca' });
 };
 
 module.exports = {
