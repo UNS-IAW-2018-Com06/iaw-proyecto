@@ -2,7 +2,7 @@ var passport = require('passport');
 var User = require('../models/user');
 
 const getRegister = function (req, res) {
-    res.render('register');
+    res.render('register', {title : "Registro"});
 };
 
 const register = function (req, res) {
