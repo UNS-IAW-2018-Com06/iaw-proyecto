@@ -14,6 +14,7 @@ const universidadSchema = new mongoose.Schema({
     }],
     comentarios: [{
         usuario : {type: String, required : true},
+        foto : {type: String},
         comentario : {type: String, required : true}
     }]
 });
