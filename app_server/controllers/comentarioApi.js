@@ -7,11 +7,9 @@ const setComentario = function(req,res){
     var foto;
     if(req.user.photos == null){
         foto = "/images/foto.jpg";
-        console.log("No hay fotos");
     }
     else{
         foto = req.user.photos[0].value;
-        console.log("HAY FOTO : "+ foto)
     }
 
     Universidad.update({_id: req.body.id},{ "$push": { "comentarios": { "usuario" :  req.user.displayName, "foto" : foto, "comentario" : req.body.comentario}}},

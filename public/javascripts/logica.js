@@ -10,12 +10,12 @@ const universidadInfoTemplate = Twig.twig({
 
 
 $(function () {
+    $("#filtros").hide();
     $.get("./api/universidad/all", function (data, status) {
         initMap();
         var estilo = recuperarEstilo();
         setEstilo(estilo);
         mostrarUniversidades(data);
-        $("#filtros").hide();
     });
     
 });
@@ -43,6 +43,5 @@ function mostrarUniversidad(e) {
 
 function mostrarFiltros(){
     $("#filtros").toggle();
-
 }
 
