@@ -6,7 +6,7 @@ const setComentario = function(req,res){
 
     var foto;
     if(req.user.photos == null){
-        foto = "";
+        foto = "/images/foto.jpg";
         console.log("No hay fotos");
     }
     else{
