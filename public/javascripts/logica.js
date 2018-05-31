@@ -17,6 +17,7 @@ $(function () {
         setEstilo(estilo);
         mostrarUniversidades(data);
     });
+    FiltrarPorBusqueda();
     
 });
 
@@ -26,6 +27,7 @@ function mostrarUniversidades(data) {
         row.click(mostrarUniversidad);
         $("#tabla-universidades").append(row);
         agregarUniversidadEnMapa(universidad);
+        
     })
 }
 
@@ -43,5 +45,14 @@ function mostrarUniversidad(e) {
 
 function mostrarFiltros(){
     $("#filtros").toggle();
+}
+
+function FiltrarPorBusqueda(){
+    $("#myInput").on("keyup", function() {
+      var value = $(this).val().toLowerCase();
+      $("#tabla-universidades tr").filter(function() {
+        $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+      });
+    });
 }
 

@@ -7,6 +7,6 @@ const middleware     = require('../auth/middleware');
 router.get('/universidad/all',universidadApi.getUniversidades);
 router.get('/universidad/:uniID',universidadApi.getUniversidad);
 router.post('/universidad/:uniID/comentar',middleware,comentarioApi.setComentario);
-router.get('/universidad/:provincia',universidadApi.getUniversidadProvincia);
+router.get('/universidad/provincia/:provID',universidadApi.getUniversidadProvincia);
 
 module.exports = router;
