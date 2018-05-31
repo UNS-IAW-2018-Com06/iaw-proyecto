@@ -19,7 +19,7 @@ function centrarUniversidad(lt, lg){
     map.setZoom(15);
 }
 
-function centrarMapa(controlDiv) {
+function Volver(controlDiv) {
 
     // Set CSS for the control border.
     var controlUI = document.createElement('div');
@@ -31,7 +31,7 @@ function centrarMapa(controlDiv) {
     controlUI.style.marginBottom = '22px';
     controlUI.style.marginTop = '5px';
     controlUI.style.textAlign = 'center';
-    controlUI.title = 'Click para centrar el mapa';
+    controlUI.title = 'Click para volver';
     controlDiv.appendChild(controlUI);
 
     // Set CSS for the control interior.
@@ -42,7 +42,7 @@ function centrarMapa(controlDiv) {
     controlText.style.lineHeight = '30px';
     controlText.style.paddingLeft = '5px';
     controlText.style.paddingRight = '5px';
-    controlText.innerHTML = 'Centrar Mapa';
+    controlText.innerHTML = 'Volver';
     controlUI.appendChild(controlText);
 
     // Setup the click event listeners: simply set the map to Chicago.
@@ -65,7 +65,7 @@ function initMap() {
     // Create the DIV to hold the control and call the CenterControl()
     // constructor passing in this DIV.
     var centerControlDiv = document.createElement('div');
-    var centerControl = new centrarMapa(centerControlDiv);
+    var centerControl = new Volver(centerControlDiv);
 
     centerControlDiv.index = 1;
     map.controls[google.maps.ControlPosition.TOP_CENTER].push(centerControlDiv);
