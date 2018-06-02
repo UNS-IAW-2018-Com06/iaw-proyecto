@@ -118,13 +118,23 @@ body.night {
   margin-top : 10px;
 }
 
- .formregister,.formlogin{
+@media only screen and (min-width: 600px){
+
+.formregister,.formlogin{
   margin-top : 10%;
   margin-left: 35%;
   margin-right: 35%;
   margin-bottom: 15%;
 }
 
+}
+
 .nav-item{
   padding-right: 15px;
+}
+
+#formlogin label.error {
+  margin-left: 10px;
+  color : red;
+  display: inline;
 }

@@ -6,16 +6,16 @@
 
 <div class="container">
 
-	<form action="login" method="post" class="formlogin">
+	<form action="login" method="post" class="formlogin" id="formlogin">
 		<div class="form-group">
     		<label for="inputUser">Usuario</label>
-    		<input type="text" name="username" class="form-control" autofocus id="inputUser" placeholder="Ingrese su usuario">
+    		<input type="text" name="username" class="form-control" id="inputUser" autofocus  placeholder="Ingrese su usuario">
   		</div>
   		<div class="form-group">
-    		<label for="inputPassword">Password</label>
+    		<label for="inputPassword">Contraseña</label>
     		<input type="password" name="password" class="form-control" id="inputPassword" placeholder="Ingrese su contraseña">
   		</div>
-		<button type="submit" class="btn btn-lg btn-block btn-primary"><i class="fas fa-sign-in-alt"></i> Ingresar</button>
+		<button type="submit" class="btn btn-lg btn-block btn-primary submit"><i class="fas fa-sign-in-alt"></i> Ingresar</button>
 		<a class="btn btn-block btn-social btn-facebook" href="/login/facebook">
     		<i class="fab fa-facebook-f"></i> Ingresar con Facebook
   		</a>
@@ -27,3 +27,22 @@
 {% include 'footer.twig' %}
 {% endblock %}
 
+{% block scripts %}
+	<script src='https://code.jquery.com/jquery-3.1.1.min.js'></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
+	<script src='https://cdn.jsdelivr.net/npm/jquery-validation@1.17.0/dist/jquery.validate.js'></script>
+	<script>
+		$().ready(function() {
+		$("#formlogin").validate({
+			rules : {
+				username: "required",
+				password : "required"
+			},
+			messages : {
+				username : "Por favor ingrese su usuario",
+				password : "Por favor ingrese su contraseña"
+			}
+			});
+		});
+	</script>
+{% endblock %}
