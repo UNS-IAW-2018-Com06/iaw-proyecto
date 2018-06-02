@@ -6,11 +6,7 @@
 
 <div class="container">
 
-<<<<<<< HEAD
 	<form action="login" method="post" class="formlogin" id="formlogin">
-=======
-	<form action="login" method="post" class="formlogin" id="formLogin" >
->>>>>>> 6fb83a113d6e90cfb1517d3dda58a76938c72d51
 		<div class="form-group">
     		<label for="inputUser">Usuario</label>
     		<input type="text" name="username" class="form-control" id="inputUser" autofocus  placeholder="Ingrese su usuario">
@@ -19,11 +15,7 @@
     		<label for="inputPassword">Contraseña</label>
     		<input type="password" name="password" class="form-control" id="inputPassword" placeholder="Ingrese su contraseña">
   		</div>
-<<<<<<< HEAD
 		<button type="submit" class="btn btn-lg btn-block btn-primary submit"><i class="fas fa-sign-in-alt"></i> Ingresar</button>
-=======
-		<button type="submit" class="btn btn-lg btn-block btn-primary" id="buttonLogin"><i class="fas fa-sign-in-alt"></i> Ingresar</button>
->>>>>>> 6fb83a113d6e90cfb1517d3dda58a76938c72d51
 		<a class="btn btn-block btn-social btn-facebook" href="/login/facebook">
     		<i class="fab fa-facebook-f"></i> Ingresar con Facebook
   		</a>
@@ -36,7 +28,6 @@
 {% endblock %}
 
 {% block scripts %}
-<<<<<<< HEAD
 	<script src='https://code.jquery.com/jquery-3.1.1.min.js'></script>
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
 	<script src='https://cdn.jsdelivr.net/npm/jquery-validation@1.17.0/dist/jquery.validate.js'></script>
@@ -55,29 +46,3 @@
 		});
 	</script>
 {% endblock %}
-=======
-<script src='https://code.jquery.com/jquery-3.1.1.min.js'></script>
-<script src= 'https://cdn.jsdelivr.net/npm/jquery-validation@1.17.0/dist/jquery.validate.js'> </script>
-<script type="text/javascript">
-	
-$("#formLogin").validate({
-    rules: {
-        username: { 
-             required: true
-        } , 
-        password: { 
-             required: true
-        }
-    },
-    messages:{
-         username: { 
-             required:"No puede ser vacio."
-        },
-        password: { 
-             required:"No puede ser vacia."
-        }
-    }
-});
-</script>
-{% endblock %}	
->>>>>>> 6fb83a113d6e90cfb1517d3dda58a76938c72d51
