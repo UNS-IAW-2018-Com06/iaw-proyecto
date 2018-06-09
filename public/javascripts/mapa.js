@@ -1,4 +1,5 @@
 var map;
+var markersArray = [];
 
 function agregarUniversidadEnMapa(universidad) {
 
@@ -11,6 +12,15 @@ function agregarUniversidadEnMapa(universidad) {
         $("#"+marker.id).children().trigger('click');
         
     });
+
+    markersArray.push(marker);
+}
+
+function borrarMarcadores(){
+    for (var i = 0; i < markersArray.length; i++ ) {
+        markersArray[i].setMap(null);
+      }
+      markersArray.length = 0;
 }
 
 function centrarUniversidad(lt, lg){
@@ -52,6 +62,7 @@ function Volver(controlDiv) {
         $("#comentario").empty();
         $("#info-universidad").empty();
         $("#lista-universidades").show();
+        $('#filter-btn').show();
     });
 }
 
