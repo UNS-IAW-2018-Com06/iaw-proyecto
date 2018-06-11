@@ -8,6 +8,7 @@ const universidadSchema = new mongoose.Schema({
     telefono: { type: Number, required: true },
     web: { type: String, required: true },
     coordenadas: {type : [Number], required: true, index: '2dsphere'},
+    placeID : {type : String, required : true},
     carreras_grado: [{
         nombre_carrera: { type: String, required: true },
         duracion: { type: Number, required: true }

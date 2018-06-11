@@ -6,27 +6,43 @@ function agregarUniversidadEnMapa(universidad) {
     var marker = new google.maps.Marker({
         position: new google.maps.LatLng(universidad.coordenadas[0], universidad.coordenadas[1]),
         map: map,
-        id : universidad._id
+        id: universidad._id
     });
     marker.addListener('click', function () {
-        $("#"+marker.id).children().trigger('click');
-        
+        $("#" + marker.id).children().trigger('click');
+
     });
 
     markersArray.push(marker);
 }
 
-function borrarMarcadores(){
-    for (var i = 0; i < markersArray.length; i++ ) {
+function borrarMarcadores() {
+    for (var i = 0; i < markersArray.length; i++) {
         markersArray[i].setMap(null);
-      }
-      markersArray.length = 0;
+    }
+    markersArray.length = 0;
 }
 
-function centrarUniversidad(lt, lg){
+function centrarUniversidad(lt, lg) {
 
-    map.panTo({lat: lt, lng : lg});
+    map.panTo({ lat: lt, lng: lg });
     map.setZoom(15);
+}
+
+function getRating(data) {
+    var request = {
+        placeId: data.placeID
+    };
+    console.log(data.placeID);
+
+    service = new google.maps.places.PlacesService(map);
+    service.getDetails(request, callback);
+
+    function callback(place, status) {
+        if (status == google.maps.places.PlacesServiceStatus.OK) {
+            $("#info-universidad").append($(universidadInfoTemplate.render({ "universidad": data, "rating" : place.rating})).attr("id", data._id));
+        }
+    }
 }
 
 function Volver(controlDiv) {

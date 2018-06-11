@@ -148,7 +148,8 @@ function mostrarUniversidad(e) {
     $('#filter-btn').hide();
     $('#lista-universidades').hide();
     $.get("./api/universidad/" + id, function (data, status) {
-        $("#info-universidad").append($(universidadInfoTemplate.render({ "universidad": data })).attr("id", data._id));
+        
+        getRating(data);       
         mostrarInfoUniversidad(data);
         centrarUniversidad(data.coordenadas[0], data.coordenadas[1])
     });
